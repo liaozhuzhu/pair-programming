@@ -1,26 +1,24 @@
-{%extends 'base.html'%} 
+{% extends 'base.html' %}
 
-{% block page_title %} AI Salary Predictor {% endblock%}
+{% block page_title %}AI Salary Predictor{% endblock %}
 
-{%block content%}
-<h1>AI Salary Predictor</h1>
-<p>Lorem, alksdjflasjdlkfjalksdfjlkasjdfklajslkdj</p>
+{% block content %}
+<div class="container mt-5">
+  <h1 class="mb-3">AI Salary Predictor</h1>
+  <p class="text-muted">Fill out the form to predict your AI-related salary.</p>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Survey Form</title>
-</head>
-<body>
+  {% if prediction %}
+    <div class="alert alert-success" role="alert">
+      💰 Predicted Salary: <strong>${{ prediction.predicted_salary | round(2) }}</strong>
+    </div>
+  {% endif %}
 
-<h1>Survey Form</h1>
+  <form action="/predict" method="POST" class="row g-3">
 
-<form action="/predict" method="POST">
     <!-- Age Dropdown -->
-    <label for="age">Age:</label>
-    <select id="age" name="age" required>
+    <div class="col-md-6">
+      <label for="age" class="form-label">Age:</label>
+      <select id="age" name="age" class="form-select" required>
         <option value="">--Please choose your age--</option>
         <option value="0">18-21</option>
         <option value="1">22-24</option>
@@ -33,24 +31,26 @@
         <option value="8">55-59</option>
         <option value="9">60-69</option>
         <option value="10">70+</option>
-    </select>
-    <br><br>
+      </select>
+    </div>
 
     <!-- Gender Dropdown -->
-    <label for="gender">Gender:</label>
-    <select id="gender" name="gender" required>
+    <div class="col-md-6">
+      <label for="gender" class="form-label">Gender:</label>
+      <select id="gender" name="gender" class="form-select" required>
         <option value="">--Please choose your gender--</option>
         <option value="0">Man</option>
         <option value="1">Nonbinary</option>
         <option value="2">Prefer not to say</option>
         <option value="3">Prefer to self-describe</option>
         <option value="4">Woman</option>
-    </select>
-    <br><br>
+      </select>
+    </div>
 
     <!-- Country Dropdown -->
-    <label for="country">Country:</label>
-    <select id="country" name="country" required>
+    <div class="col-md-12">
+      <label for="country" class="form-label">Country:</label>
+      <select id="country" name="country" class="form-select" required>
         <option value="">--Please choose your country--</option>
         <option value="0">Algeria</option>
         <option value="1">Argentina</option>
@@ -110,12 +110,13 @@
         <option value="55">United States of America</option>
         <option value="56">Viet Nam</option>
         <option value="57">Zimbabwe</option>
-    </select>
-    <br><br>
+      </select>
+    </div>
 
-    <!-- Highest Degree Dropdown -->
-    <label for="highest_deg">Highest Degree:</label>
-    <select id="highest_deg" name="highest_deg" required>
+    <!-- Highest Degree -->
+    <div class="col-md-6">
+      <label for="highest_deg" class="form-label">Highest Degree:</label>
+      <select id="highest_deg" name="highest_deg" class="form-select" required>
         <option value="">--Please choose your degree--</option>
         <option value="0">Bachelor’s degree</option>
         <option value="1">Doctoral degree</option>
@@ -124,12 +125,13 @@
         <option value="4">No formal education past high school</option>
         <option value="5">Professional doctorate</option>
         <option value="6">Some college/university study without earning a bachelor’s degree</option>
-    </select>
-    <br><br>
+      </select>
+    </div>
 
-    <!-- Code Experience Dropdown -->
-    <label for="code_experience">Code Experience:</label>
-    <select id="code_experience" name="code_experience" required>
+    <!-- Code Experience -->
+    <div class="col-md-6">
+      <label for="code_experience" class="form-label">Code Experience:</label>
+      <select id="code_experience" name="code_experience" class="form-select" required>
         <option value="">--Please choose your experience--</option>
         <option value="0">1-3 years</option>
         <option value="1">10-20 years</option>
@@ -138,12 +140,13 @@
         <option value="4">5-10 years</option>
         <option value="5">&lt; 1 years</option>
         <option value="6">I have never written code</option>
-    </select>
-    <br><br>
+      </select>
+    </div>
 
-    <!-- Current Title Dropdown -->
-    <label for="current_title">Current Title:</label>
-    <select id="current_title" name="current_title" required>
+    <!-- Current Title -->
+    <div class="col-md-6">
+      <label for="current_title" class="form-label">Current Title:</label>
+      <select id="current_title" name="current_title" class="form-select" required>
         <option value="">--Please choose your title--</option>
         <option value="0">Data Administrator</option>
         <option value="1">Data Analyst (Business, Marketing, Financial, Quantitative, etc)</option>
@@ -159,25 +162,25 @@
         <option value="11">Software Engineer</option>
         <option value="12">Statistician</option>
         <option value="13">Teacher / professor</option>
-    </select>
-    <br><br>
+      </select>
+    </div>
 
-    <!-- Company Size Dropdown -->
-    <label for="company_size">Company Size:</label>
-    <select id="company_size" name="company_size" required>
+    <!-- Company Size -->
+    <div class="col-md-6">
+      <label for="company_size" class="form-label">Company Size:</label>
+      <select id="company_size" name="company_size" class="form-select" required>
         <option value="">--Please choose your company size--</option>
         <option value="0">0-49 employees</option>
         <option value="1">10,000 or more employees</option>
         <option value="2">1000-9,999 employees</option>
         <option value="3">250-999 employees</option>
         <option value="4">50-249 employees</option>
-    </select>
-    <br><br>
+      </select>
+    </div>
 
-    <button type="submit">Submit</button>
-</form>
-
-</body>
-</html>
-
-{%endblock%}
+    <div class="col-12 mt-3">
+      <button type="submit" class="btn btn-primary w-100">Submit</button>
+    </div>
+  </form>
+</div>
+{% endblock %}
